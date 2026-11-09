@@ -1,0 +1,23 @@
+# Pliki lokalne i edytor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dane prywatne i konfiguracja
+.env
+.env.*
+!.env.example
+*.log
+
+# Rezerwacje powstające podczas działania aplikacji
+/data/rezerwacje.json
+/data/rezerwacje.lock
+/storage/rezerwacje.json
+/storage/rezerwacje.lock
+
+# Zależności i wyniki testów
+/vendor/
+/coverage/
+/.phpunit.cache/
+.phpunit.result.cache
