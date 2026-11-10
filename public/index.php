@@ -67,6 +67,45 @@ if (isset($_GET['seans']) && is_string($_GET['seans'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Repertuar i rezerwacje miejsc w Kinie na Klik.">
     <title><?= htmlspecialchars($nazwaKina, ENT_QUOTES, 'UTF-8') ?></title>
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        * { box-sizing: border-box; }
+
+        body { margin: 0; line-height: 1.6; }
+
+        header {
+            padding: 3rem 1.25rem;
+            text-align: center;
+            background: #17243a;
+            border-bottom: 1px solid #334155;
+        }
+
+        header h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); }
+        header p { color: #cbd5e1; }
+
+        main {
+            width: min(960px, calc(100% - 2.5rem));
+            margin: 2.5rem auto 4rem;
+        }
+
+        h2, h3, h4 { line-height: 1.3; }
+        a { color: #93c5fd; text-underline-offset: 0.2em; }
+        a:hover { color: #bfdbfe; }
+        a:focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }
+
+        footer {
+            padding: 1.5rem;
+            color: #cbd5e1;
+            text-align: center;
+            border-top: 1px solid #334155;
+        }
+    </style>
 </head>
 <body>
     <header>
