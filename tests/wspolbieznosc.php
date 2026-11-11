@@ -55,10 +55,16 @@ try {
     echo 'OK: 10 równoczesnych prób, tylko jedna rezerwacja C3.' . PHP_EOL;
 } finally {
     foreach ($procesy as [$proces, $stdout, $stderr]) {
-        fclose($stdout);
-        fclose($stderr);
-        proc_terminate($proces);
-        proc_close($proces);
+        if (is_resource($stdout)) {
+            fclose($stdout);
+        }
+        if (is_resource($stderr)) {
+            fclose($stderr);
+        }
+        if (is_resource($proces)) {
+            proc_terminate($proces);
+            proc_close($proces);
+        }
     }
     if (is_dir($katalog)) {
         foreach (glob($katalog . '/*') ?: [] as $plik) {
