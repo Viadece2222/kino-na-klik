@@ -1,56 +1,57 @@
 # Plan zadań – Kino na Klik
 
-Projekt realizuję samodzielnie. Pełnię dwie role: kierownika projektu (PM) i programisty. Dzielę pracę na dwa główne zadania, a kod przygotowuję na osobnych gałęziach i zgłaszam przez Pull Requesty.
+Projekt realizuję samodzielnie jako kierownik projektu (PM) i programista. Zadania mają osobne gałęzie, checklisty, terminy i prawdziwe Pull Requesty.
 
-## Zadanie 1 – Repertuar i wygląd strony
+## KINO-01 – Repertuar i wygląd strony
 
-- **Numer:** KINO-01
 - **Osoba odpowiedzialna:** Piotr Montewka (PM i programista)
 - **Termin:** 12.11.2026
-- **Status:** Do zrobienia
+- **Status:** Zrobione – testy automatyczne zaliczone
 - **Gałąź:** `funkcja/repertuar`
-- **Pull Request:** do uzupełnienia po rozpoczęciu prac
+- **Pull Request:** [#1 – Repertuar filmów i wygląd strony](https://github.com/piomon/kino-na-klik/pull/1) – scalony
 
-**Opis:** Przygotować stronę główną kina z repertuarem trzech filmów. Użytkownik ma widzieć tytuły, krótkie opisy i dostępne godziny seansów. Strona powinna działać także na telefonie.
+**Zakres:** Trzy filmy, sześć seansów, wybór godziny, karty repertuaru i podstawowy układ responsywny.
 
 **Lista kontrolna:**
 
-- [ ] Utworzyć podstawowe pliki HTML/PHP i CSS.
-- [ ] Dodać trzy filmy i godziny seansów.
-- [ ] Umożliwić wybór filmu i seansu.
-- [ ] Dopracować wygląd strony na komputerze i telefonie.
-- [ ] Uruchomić stronę i sprawdzić wyświetlanie repertuaru.
-- [ ] Utworzyć, sprawdzić i scalić Pull Request.
+- [x] Przygotować pliki strony w PHP.
+- [x] Dodać trzy filmy i godziny seansów.
+- [x] Umożliwić wybór filmu i seansu.
+- [x] Dodać style kart i układ dopasowujący się do szerokości ekranu.
+- [x] Sprawdzić repertuar testami PHP.
+- [x] Utworzyć, zweryfikować i scalić Pull Request.
+- [ ] Ręcznie sprawdzić wygląd na telefonie i komputerze (NOT_RUN).
 
-**Warunek ukończenia:** Wszystkie trzy filmy i ich seanse są widoczne, a wybór seansu działa bez błędów.
+**Dowód:** [GitHub Actions – testy PR #1](https://github.com/piomon/kino-na-klik/actions/runs/43108507405) – PASS.
 
-## Zadanie 2 – Rezerwacja miejsc
+## KINO-02 – Rezerwacja miejsc
 
-- **Numer:** KINO-02
 - **Osoba odpowiedzialna:** Piotr Montewka (PM i programista)
 - **Termin:** 17.11.2026
-- **Status:** Do zrobienia
+- **Status:** Zrobione – testy automatyczne zaliczone
 - **Gałąź:** `funkcja/rezerwacje`
-- **Pull Request:** do uzupełnienia po rozpoczęciu prac
+- **Pull Request:** [#2 – Rezerwacja miejsc w sali kinowej](https://github.com/piomon/kino-na-klik/pull/2) – scalony
 
-**Opis:** Dodać prostą salę z 40 miejscami (5 rzędów po 8 foteli). Użytkownik wybiera wolne miejsce, wpisuje imię i zatwierdza rezerwację. PHP zapisuje rezerwacje w pliku JSON bez bazy danych.
+**Zakres:** Sala 5 × 8, zajęte miejsca, formularz, walidacja, zapis JSON i numer rezerwacji.
 
 **Lista kontrolna:**
 
-- [ ] Wyświetlić plan sali z numerami miejsc.
-- [ ] Pokazać miejsca zajęte dla wybranego seansu.
-- [ ] Dodać formularz z imieniem i wybranym miejscem.
-- [ ] Sprawdzać poprawność danych po stronie PHP.
-- [ ] Zapisywać rezerwacje w JSON z blokadą jednoczesnego zapisu.
-- [ ] Zablokować ponowną rezerwację tego samego miejsca na ten sam seans.
-- [ ] Wyświetlić potwierdzenie i numer rezerwacji.
-- [ ] Sprawdzić zapis po odświeżeniu strony oraz rezerwacje różnych seansów.
-- [ ] Utworzyć, sprawdzić i scalić Pull Request.
+- [x] Wyświetlić 40 foteli z numerami A1–E8.
+- [x] Pokazać miejsca zajęte dla wybranego seansu.
+- [x] Dodać formularz imienia i wyboru miejsca.
+- [x] Sprawdzać dane w PHP i zabezpieczyć formularz tokenem CSRF.
+- [x] Zapisywać JSON z blokadą i atomową podmianą pliku.
+- [x] Zapobiegać rezerwacji zajętego miejsca na tym samym seansie.
+- [x] Pokazać numer rezerwacji i potwierdzenie.
+- [x] Przetestować osobne seanse, błędne dane i uszkodzony JSON.
+- [x] Przetestować 10 równoczesnych prób rezerwacji tego samego miejsca.
+- [x] Przetestować ścieżkę HTTP i scalić Pull Request.
+- [ ] Ręcznie sprawdzić wygląd i obsługę dotykową na telefonie (NOT_RUN).
 
-**Warunek ukończenia:** Rezerwacja zapisuje się, zajęty fotel pozostaje niedostępny, a ten sam numer fotela można zarezerwować na inny seans.
+**Dowód:** [GitHub Actions – testy PR #2](https://github.com/piomon/kino-na-klik/actions/runs/43109349883) – PASS.
 
-## Jak śledzę postęp
+## Zasady raportowania
 
-Status każdego zadania zmieniam na **W trakcie** po rozpoczęciu pracy i na **Zrobione** dopiero po sprawdzeniu działania oraz scaleniu PR. Checklisty aktualizuję zgodnie z rzeczywiście wykonanymi czynnościami.
+Zaznaczone pozycje oznaczają rzeczywiście zaimplementowane i automatycznie zweryfikowane zmiany. Kontrola wizualna w przeglądarce pozostaje jawnie oznaczona jako **NOT_RUN**; nie jest zastępowana testem PHP ani samą obecnością CSS.
 
-To jest plan w repozytorium GitHub, a nie tablica Trello. Jeśli prowadzący wymaga osobnych kart Trello, trzeba je utworzyć również w Trello, z takimi samymi opisami, terminami i checklistami.
+To plan w repozytorium GitHub, a nie tablica Trello. Nie deklaruję istnienia kart ani pracy innych osób.

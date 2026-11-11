@@ -13,8 +13,8 @@ Thumbs.db
 # Rezerwacje powstające podczas działania aplikacji
 /data/rezerwacje.json
 /data/rezerwacje.lock
-/storage/rezerwacje.json
-/storage/rezerwacje.lock
+/storage/
+# Cały katalog storage jest lokalny, także pliki tymczasowe zapisu
 
 # Zależności i wyniki testów
 /vendor/
