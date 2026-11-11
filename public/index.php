@@ -99,6 +99,42 @@ if (isset($_GET['seans']) && is_string($_GET['seans'])) {
         a:hover { color: #bfdbfe; }
         a:focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }
 
+        #repertuar > p { color: #cbd5e1; }
+
+        #repertuar article {
+            margin-top: 1.25rem;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            border-radius: 1rem;
+            background: #1e293b;
+        }
+
+        #repertuar article h3 { margin-top: 0; }
+        #repertuar article h4 { margin-bottom: 0.75rem; }
+
+        #repertuar article ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #repertuar article li a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 2.75rem;
+            padding: 0.5rem 0.9rem;
+            border-radius: 0.6rem;
+            background: #1d4ed8;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        #repertuar article li a:hover { background: #2563eb; }
+
         footer {
             padding: 1.5rem;
             color: #cbd5e1;
