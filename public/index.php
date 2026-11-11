@@ -1,63 +1,14 @@
 <?php
 declare(strict_types=1);
 
-$nazwaKina = 'Kino na Klik';
-$dzisiaj = new DateTimeImmutable('today', new DateTimeZone('Europe/Warsaw'));
-$jutro = $dzisiaj->modify('+1 day');
+require_once dirname(__DIR__) . '/src/Repertuar.php';
 
-$repertuar = [
-    [
-        'id' => 'miasto-pod-gwiazdami',
-        'tytul' => 'Miasto pod gwiazdami',
-        'gatunek' => 'Science fiction',
-        'czas' => 108,
-        'opis' => 'Młoda astronomka odkrywa tajemniczy sygnał nad swoim miastem.',
-        'seanse' => [
-            ['dzien' => $dzisiaj, 'godzina' => '17:00'],
-            ['dzien' => $jutro, 'godzina' => '20:00'],
-        ],
-    ],
-    [
-        'id' => 'tajemnica-starego-kina',
-        'tytul' => 'Tajemnica starego kina',
-        'gatunek' => 'Kryminał',
-        'czas' => 96,
-        'opis' => 'Podczas ostatniego seansu znika cenny film, a tropy prowadzą za kulisy.',
-        'seanse' => [
-            ['dzien' => $dzisiaj, 'godzina' => '18:30'],
-            ['dzien' => $jutro, 'godzina' => '16:00'],
-        ],
-    ],
-    [
-        'id' => 'na-drugim-brzegu',
-        'tytul' => 'Na drugim brzegu',
-        'gatunek' => 'Przygodowy',
-        'czas' => 112,
-        'opis' => 'Troje przyjaciół wyrusza w podróż, która zmienia ich plany na wakacje.',
-        'seanse' => [
-            ['dzien' => $dzisiaj, 'godzina' => '15:00'],
-            ['dzien' => $jutro, 'godzina' => '18:00'],
-        ],
-    ],
-];
+$nazwaKina = 'Kino na Klik';
+$repertuar = repertuarNaDni();
 
 $wybranySeans = null;
 if (isset($_GET['seans']) && is_string($_GET['seans'])) {
-    foreach ($repertuar as $film) {
-        foreach ($film['seanse'] as $seans) {
-            $idSeansu = $film['id'] . '-' . $seans['dzien']->format('Ymd')
-                . '-' . str_replace(':', '', $seans['godzina']);
-
-            if ($_GET['seans'] === $idSeansu) {
-                $wybranySeans = [
-                    'film' => $film['tytul'],
-                    'dzien' => $seans['dzien']->format('d.m.Y'),
-                    'godzina' => $seans['godzina'],
-                ];
-                break 2;
-            }
-        }
-    }
+    $wybranySeans = znajdzSeans($_GET['seans'], $repertuar);
 }
 ?>
 <!doctype html>
@@ -164,8 +115,7 @@ if (isset($_GET['seans']) && is_string($_GET['seans'])) {
                     <ul>
                         <?php foreach ($film['seanse'] as $seans): ?>
                             <?php
-                            $idSeansu = $film['id'] . '-' . $seans['dzien']->format('Ymd')
-                                . '-' . str_replace(':', '', $seans['godzina']);
+                            $idSeansu = idSeansu($film, $seans);
                             ?>
                             <li>
                                 <a href="?seans=<?= urlencode($idSeansu) ?>#wybrany-seans">
