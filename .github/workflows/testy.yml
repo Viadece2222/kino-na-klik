@@ -1,0 +1,23 @@
+name: Testy PHP
+
+on:
+  push:
+    branches: [main, "funkcja/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  testy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz kod
+        uses: actions/checkout@v4
+      - name: Sprawdź PHP
+        run: php -v
+      - name: Sprawdź składnię plików PHP
+        run: |
+          find public tests -type f -name '*.php' -print0 2>/dev/null | xargs -0 -r -n 1 php -l
+      - name: Test repertuaru
+        run: php tests/repertuar.php
