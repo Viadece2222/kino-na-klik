@@ -83,7 +83,7 @@ final class Rezerwacje
     private function zBlokada(int $rodzaj, callable $operacja): mixed
     {
         if (!is_dir($this->katalog)
-            && !mkdir($this->katalog, 0700, true)
+            && !@mkdir($this->katalog, 0700, true)
             && !is_dir($this->katalog)) {
             throw new RuntimeException('Nie można przygotować katalogu danych.');
         }

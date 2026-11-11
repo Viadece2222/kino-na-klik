@@ -2,7 +2,7 @@ name: Testy PHP
 
 on:
   push:
-    branches: [main, "funkcja/**"]
+    branches: [main, "funkcja/**", "poprawka/**"]
   pull_request:
 
 permissions:
@@ -26,4 +26,7 @@ jobs:
       - name: Test rezerwacji w przeglądarce HTTP
         run: bash tests/http.sh
       - name: Test równoczesnych zapisów
-        run: php tests/wspolbieznosc.php
+        run: |
+          for i in 1 2 3 4 5; do
+            php tests/wspolbieznosc.php
+          done
