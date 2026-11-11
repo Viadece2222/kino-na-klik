@@ -15,7 +15,8 @@ for proba in $(seq 1 30); do
     sleep 0.2
 done
 
-curl -fsS "$adres/index.php" | grep -q 'Miasto pod gwiazdami'
+curl -fsS "$adres/index.php" > "$tymczasowy/repertuar"
+grep -q 'Miasto pod gwiazdami' "$tymczasowy/repertuar"
 kod_seansu="miasto-pod-gwiazdami-$(TZ=Europe/Warsaw date +%Y%m%d)-1700"
 curl -fsS -c "$tymczasowy/ciastka" "$adres/rezerwacja.php?seans=$kod_seansu" > "$tymczasowy/strona"
 grep -q 'Miejsce A1' "$tymczasowy/strona"
