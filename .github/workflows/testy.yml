@@ -25,3 +25,5 @@ jobs:
         run: php tests/rezerwacje.php
       - name: Test rezerwacji w przeglądarce HTTP
         run: bash tests/http.sh
+      - name: Test równoczesnych zapisów
+        run: php tests/wspolbieznosc.php
