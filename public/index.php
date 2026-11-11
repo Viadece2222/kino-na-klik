@@ -140,7 +140,7 @@ if (isset($_GET['seans']) && is_string($_GET['seans'])) {
                     — <?= htmlspecialchars($wybranySeans['dzien'], ENT_QUOTES, 'UTF-8') ?>
                     o <?= htmlspecialchars($wybranySeans['godzina'], ENT_QUOTES, 'UTF-8') ?>
                 </p>
-                <p>Wybór miejsc i rezerwacja pojawią się w kolejnym etapie.</p>
+                <p><a href="rezerwacja.php?seans=<?= rawurlencode($wybranySeans['id']) ?>">Wybierz miejsce i zarezerwuj</a></p>
             </section>
         <?php endif; ?>
     </main>
