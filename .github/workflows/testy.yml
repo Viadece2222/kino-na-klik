@@ -18,6 +18,12 @@ jobs:
         run: php -v
       - name: Sprawdź składnię plików PHP
         run: |
-          find public tests -type f -name '*.php' -print0 2>/dev/null | xargs -0 -r -n 1 php -l
+          find public src tests -type f -name '*.php' -print0 2>/dev/null | xargs -0 -r -n 1 php -l
       - name: Test repertuaru
         run: php tests/repertuar.php
+      - name: Test rezerwacji
+        run: php tests/rezerwacje.php
+      - name: Test rezerwacji w przeglądarce HTTP
+        run: bash tests/http.sh
+      - name: Test równoczesnych zapisów
+        run: php tests/wspolbieznosc.php
