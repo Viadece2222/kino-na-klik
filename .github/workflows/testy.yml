@@ -2,7 +2,7 @@ name: Testy PHP
 
 on:
   push:
-    branches: [main, "funkcja/**"]
+    branches: [main, "funkcja/**", "poprawka/**"]
   pull_request:
 
 permissions:
