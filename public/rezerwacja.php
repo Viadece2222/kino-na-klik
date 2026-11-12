@@ -26,6 +26,7 @@ $blad = null;
 $potwierdzenie = null;
 $zajete = [];
 $moznaRezerwowac = $seans !== null;
+$brakMiejsc = false;
 $imieInput = '';
 
 if (!isset($_SESSION['csrf']) || !is_string($_SESSION['csrf'])) {
@@ -78,6 +79,7 @@ if ($seans === null) {
 
     try {
         $zajete = $magazyn->zajete($seansId);
+        $brakMiejsc = count($zajete) >= count(Rezerwacje::miejsca());
     } catch (RuntimeException $wyjatek) {
         error_log($wyjatek->getMessage());
         $blad = 'Nie można sprawdzić wolnych miejsc. Spróbuj później.';
@@ -123,13 +125,16 @@ if ($seans === null) {
             <p>Rezerwujący: <?= h($potwierdzenie['imie']) ?></p>
             <p>Zachowaj numer rezerwacji.</p>
         </section>
+    <?php elseif ($seans !== null && $moznaRezerwowac && $brakMiejsc): ?>
+        <p class="komunikat pelna-sala" role="status">Wszystkie 40 miejsc na ten seans jest już zajętych. Wybierz inny seans z repertuaru.</p>
     <?php elseif ($seans !== null && $moznaRezerwowac): ?>
         <form method="post" action="rezerwacja.php" class="panel" id="formularz">
             <input type="hidden" name="csrf" value="<?= h($_SESSION['csrf']) ?>">
             <input type="hidden" name="seans" value="<?= h($seansId) ?>">
             <h2>Wybierz miejsce</h2>
             <p class="drugorzedny">Sala ma 5 rzędów po 8 miejsc (łącznie 40).</p>
-            <div class="sala-przewijanie">
+            <p class="wskazowka-przewijania" id="wskazowka-sala">↔ Przesuń plan w bok, aby zobaczyć wszystkie miejsca.</p>
+            <div class="sala-przewijanie" role="region" aria-label="Plan miejsc w sali" aria-describedby="wskazowka-sala" tabindex="0">
                 <div class="sala">
                     <div class="ekran">EKRAN</div>
                     <div class="fotele" role="group" aria-label="Miejsca na sali">
