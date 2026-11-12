@@ -1,6 +1,16 @@
 <?php
 declare(strict_types=1);
 
+// Wbudowany serwer PHP nie powinien podawać strony głównej pod nieznanymi adresami.
+if (PHP_SAPI === 'cli-server') {
+    $sciezka = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+    if (!in_array($sciezka, ['/', '/index.php'], true)) {
+        http_response_code(404);
+        header('Content-Type: text/plain; charset=UTF-8');
+        exit('Nie znaleziono strony.');
+    }
+}
+
 require_once dirname(__DIR__) . '/src/Repertuar.php';
 
 $nazwaKina = 'Kino na Klik';
@@ -85,6 +95,26 @@ if (isset($_GET['seans']) && is_string($_GET['seans'])) {
         }
 
         #repertuar article li a:hover { background: #2563eb; }
+
+        #wybrany-seans {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #60a5fa;
+            border-radius: 1rem;
+            background: #17243a;
+        }
+
+        #wybrany-seans a {
+            display: inline-block;
+            padding: .75rem 1.1rem;
+            border-radius: .6rem;
+            background: #1d4ed8;
+            color: #fff;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        #wybrany-seans a:hover { background: #2563eb; }
 
         footer {
             padding: 1.5rem;

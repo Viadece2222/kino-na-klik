@@ -39,7 +39,7 @@ php tests/wspolbieznosc.php
 bash tests/http.sh
 ```
 
-Test HTTP wymaga `curl` i uruchamia tymczasowy serwer PHP na porcie 8765. Test współbieżności uruchamia 10 procesów PHP próbujących zająć ten sam fotel. Testy PHP i HTTP są uruchamiane również przez workflow **Testy PHP** w GitHub Actions przy push i Pull Request.
+Test HTTP wymaga `curl`, uruchamia serwer na porcie 8765 i używa **tymczasowej kopii** katalogów `public/` oraz `src/`. Można go uruchamiać wielokrotnie bez modyfikowania właściwych rezerwacji. Port można zmienić, np. `KINO_TEST_PORT=8766 bash tests/http.sh`. Test współbieżności uruchamia 10 procesów próbujących zająć ten sam fotel, a CI powtarza ten test pięć razy.
 
 ## Struktura
 
@@ -50,6 +50,7 @@ Test HTTP wymaga `curl` i uruchamia tymczasowy serwer PHP na porcie 8765. Test w
 - `src/Rezerwacje.php` – walidacja, odczyt i bezpieczny zapis JSON.
 - `tests/` – testy repertuaru, rezerwacji, współbieżności i HTTP.
 - `dokumentacja/zadania.md` – plan i lista kontrolna prac.
+- `dokumentacja/odbior.md` – protokół odbioru technicznego i granice testów.
 
 ## Bezpieczeństwo i ograniczenia
 
@@ -65,3 +66,7 @@ Projekt wykonuje samodzielnie **Piotr Montewka (`piomon`)** jako kierownik proje
 - [PR #2 – Rezerwacja miejsc w sali kinowej](https://github.com/piomon/kino-na-klik/pull/2)
 
 Plan zadań znajduje się w [dokumentacji](dokumentacja/zadania.md), a zasady pracy w [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Odbiór techniczny
+
+Sprawdzono render strony w Chromium dla szerokości 1440, 390 i 320 px oraz rzeczywiste żądania HTTP, pełną salę, walidację i ochronę prywatnych plików. Szczegóły, wyniki i ograniczenia opisuje [protokół odbioru](dokumentacja/odbior.md). Testy na fizycznych urządzeniach oraz publiczny hosting nie wchodzą w zakres projektu edukacyjnego.
